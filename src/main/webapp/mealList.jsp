@@ -12,6 +12,7 @@
 <table style="border: 1px solid; width: 500px; text-align:center">
     <thead style="background:#fcf">
     <tr>
+        <th>Id</th>
         <th>Description</th>
         <th>Calories</th>
         <th>Date Time</th>
@@ -21,7 +22,7 @@
     </thead>
     <tbody>
     <c:forEach items="${userMeals}" var="meal">
-            <tr bgcolor="red">
+            <td><c:out value="${meal.id}" /></td>
             <td><c:out value="${meal.description}" /></td>
             <td><c:out value="${meal.calories}" /></td>
             <td><c:out value="${meal.dateTime}" /></td>
