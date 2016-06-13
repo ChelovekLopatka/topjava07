@@ -49,7 +49,8 @@ public class MealServlet extends HttpServlet {
             final UserMeal userMeal = new UserMeal(
                     LocalDateTime.parse(request.getParameter("dateTime")),
                     request.getParameter("description"),
-                    Integer.valueOf(request.getParameter("calories")));
+                    Integer.valueOf(request.getParameter("calories")),
+                    Integer.valueOf(request.getParameter("user_id")));
 
             if (request.getParameter("id").isEmpty()) {
                 LOG.info("Create {}", userMeal);
@@ -84,7 +85,7 @@ public class MealServlet extends HttpServlet {
             response.sendRedirect("meals");
         } else {
             final UserMeal meal = action.equals("create") ?
-                    new UserMeal(LocalDateTime.now(), "", 1000) :   // create
+                    new UserMeal(LocalDateTime.now(), "", 1000, 100000) :   // create
                     mealController.get(getId(request));             // update
             request.setAttribute("meal", meal);
             request.getRequestDispatcher("mealEdit.jsp").forward(request, response);
