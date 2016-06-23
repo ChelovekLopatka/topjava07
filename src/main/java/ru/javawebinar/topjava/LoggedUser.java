@@ -16,7 +16,7 @@ import static java.util.Objects.requireNonNull;
  * Mock implementation
  */
 public class LoggedUser extends org.springframework.security.core.userdetails.User {
-    private final UserTo userTo;
+    private UserTo userTo;
     public LoggedUser(User user) {
         super(user.getEmail(), user.getPassword(), user.isEnabled(), true, true, true, user.getRoles());
         this.userTo = UserUtil.asTo(user);
@@ -45,6 +45,10 @@ public class LoggedUser extends org.springframework.security.core.userdetails.Us
 
     public static int getCaloriesPerDay() {
         return get().userTo.getCaloriesPerDay();
+    }
+
+    public void update(UserTo newTo) {
+        userTo = newTo;
     }
 
     public UserTo getUserTo() {
